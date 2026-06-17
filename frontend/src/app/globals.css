@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cobweb-bg: #0d0d18;
+  --cobweb-surface: #1a1a2e;
+  --cobweb-pink: #c2185b;
+}
+
+* {
+  image-rendering: pixelated;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cobweb-bg text-gray-100 font-sans antialiased;
+  background-image:
+    radial-gradient(circle at 50% -10%, rgba(194, 24, 91, 0.08), transparent 55%),
+    linear-gradient(rgba(194, 24, 91, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 24, 91, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-attachment: fixed;
+}
+
+@layer components {
+  .pixel-border {
+    @apply border-2 border-cobweb-border;
+    box-shadow: 4px 4px 0 0 rgba(194, 24, 91, 0.45);
+  }
+
+  .pixel-border-sm {
+    @apply border-2 border-cobweb-border;
+    box-shadow: 2px 2px 0 0 rgba(194, 24, 91, 0.35);
+  }
+
+  /* Default card: depth instead of the old hard offset — reads more solid */
+  .pixel-card {
+    @apply bg-cobweb-surface border-2 border-cobweb-border rounded-none;
+    box-shadow: var(--tw-shadow, 0 2px 0 0 rgba(0,0,0,0.5), 0 8px 24px -8px rgba(0,0,0,0.6));
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.5), 0 8px 24px -8px rgba(0,0,0,0.6);
+  }
+
+  /* Opt-in accent card for hero / highlighted panels */
+  .pixel-card-accent {
+    @apply bg-cobweb-surface border-2 border-cobweb-border rounded-none;
+    box-shadow: 0 0 0 1px rgba(233,30,140,0.22), 0 12px 32px -10px rgba(194,24,91,0.3);
+  }
+
+  .pixel-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+      font-pixel text-[10px] uppercase tracking-wider
+      bg-cobweb-pink text-white border-2 border-cobweb-pink-dark
+      shadow-pixel-sm transition-all
+      hover:bg-cobweb-pink-light hover:-translate-y-0.5
+      active:translate-y-0 active:shadow-none
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .pixel-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+      font-pixel text-[10px] uppercase tracking-wider
+      bg-cobweb-surface2 text-gray-200 border-2 border-cobweb-border
+      shadow-pixel-sm transition-all
+      hover:border-cobweb-pink hover:text-cobweb-pink-light
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .pixel-input {
+    @apply w-full bg-cobweb-bg border-2 border-cobweb-border px-4 py-3
+      font-mono text-sm text-gray-100 placeholder:text-gray-500 transition-colors
+      focus:outline-none focus:border-cobweb-pink focus:shadow-pixel-sm;
+  }
+
+  .pixel-tab {
+    @apply px-4 py-2 font-pixel text-[9px] uppercase tracking-wider
+      border-2 border-transparent text-gray-400 transition-colors
+      hover:text-gray-200;
+  }
+
+  .pixel-tab-active {
+    @apply pixel-tab border-cobweb-pink bg-cobweb-pink/10 text-cobweb-pink-light;
+  }
+
+  /* Consistent section spacing — the backbone of "solid" vertical rhythm */
+  .section-stack > * + * {
+    margin-top: 1.5rem;
+  }
+
+  /* Eyebrow label above section titles */
+  .eyebrow {
+    @apply font-pixel text-[8px] uppercase tracking-[0.2em] text-cobweb-muted;
+  }
+
+  /* Stat cell used across dashboards */
+  .stat-cell {
+    @apply border-2 border-cobweb-border-soft bg-cobweb-bg-soft px-4 py-3 transition-colors;
+  }
+  .stat-cell:hover {
+    @apply border-cobweb-border;
+  }
+
+  .scanlines::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px
+    );
+  }
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2185b;
+  border: 2px solid #1a1a2e;
+}

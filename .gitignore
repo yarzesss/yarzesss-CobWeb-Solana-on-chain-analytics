@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.env
+.env
+.env.local
+.DS_Store
+node_modules/
+.next/
+*.log
+dist/
+build/
+.venv/
+venv/
+-e 
+# TypeScript incremental build cache
+*.tsbuildinfo
